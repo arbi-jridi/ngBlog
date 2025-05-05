@@ -28,9 +28,7 @@ async ngOnInit() {
       let two =Math.floor(Math.random() * (res.length));
       let three =Math.floor(Math.random() * (res.length));
       let num =[res[one],res[two],res[three]];
-
       this.articles = num;
-    console .log(this.articles,num);
   }, (error: any) => {
     console.error(error);
   });

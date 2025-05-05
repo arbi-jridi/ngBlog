@@ -51,12 +51,10 @@ ngAfterViewInit() {
           this.article = res;
           this.imageLoaded = true;
           this.authorId = this.article.idAuthor;
-          console.log('Article data loaded:', this.article, this.authorId);
           this.canDeletePost();
           this.auth.getAuthorId(this.authorId).subscribe({
             next: (authorRes: any) => {
               this.author = authorRes;
-              console.log('Author data loaded:', this.author);
               sessionStorage.setItem('author', JSON.stringify(this.author));
             },
             error: (authorErr: any) => {
@@ -106,7 +104,6 @@ jumptoComments(){
   canDeletePost() {
     this.userId = localStorage.getItem('authorId');
     if(this.userId == this.authorId) {
-      console.log(this.userId, this.authorId, this.canDelete);
       this.canDelete = true;
     } else {
       this.canDelete = false;
