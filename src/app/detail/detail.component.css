@@ -1,0 +1,35 @@
+::ng-deep .code-block {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: 'Consolas', 'Courier New', monospace;
+  margin: 1em 0;
+  white-space: pre;
+  tab-size: 2;
+}
+
+::ng-deep .code-block code {
+  display: block;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+svg:hover{
+  fill: orange;
+}
+
+disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.break-title {
+  word-break: break-word !important;
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+}

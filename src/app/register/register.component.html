@@ -1,0 +1,84 @@
+
+
+<div class="container mt-4" style="padding-top: 100px;">
+
+
+    <h2 class="text-center"> Create author account </h2>
+
+    <div class="col-12 mx-auto">
+      <form #registerForm="ngForm" (ngSubmit)="register()" novalidate>
+        <input [(ngModel)]="author.name" name="name" type="text" class="form-control m-1" 
+          placeholder="Name" required minlength="3" #name="ngModel">
+        <div *ngIf="name.invalid && name.touched" class="text-danger">
+          <div *ngIf="name.errors?.['required']">Name is required.</div>
+          <div *ngIf="name.errors?.['minlength']">Name must be at least 3 characters.</div>
+        </div>
+
+        <input [(ngModel)]="author.lastName" name="lastName" type="text" class="form-control m-1" 
+          placeholder="Last Name" required minlength="3" #lastName="ngModel">
+        <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">
+          <div *ngIf="lastName.errors?.['required']">Last name is required.</div>
+          <div *ngIf="lastName.errors?.['minlength']">Last name must be at least 3 characters.</div>
+        </div>
+
+        <input [(ngModel)]="author.email" name="email" type="email" class="form-control m-1" 
+          placeholder="Email" required email #email="ngModel">
+        <div *ngIf="email.invalid && email.touched" class="text-danger">
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+        </div>
+
+        <input [(ngModel)]="author.password" name="password" type="password" class="form-control m-1" 
+          placeholder="Password" required minlength="6" #password="ngModel">
+        <div *ngIf="password.invalid && password.touched" class="text-danger">
+          <div *ngIf="password.errors?.['required']">Password is required.</div>
+          <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters.</div>
+        </div>
+
+        <input (change)="select($event)" type="file" class="form-control m-1" 
+          placeholder="Image" accept="image/*" required>
+
+        <textarea [(ngModel)]="author.about" name="about" cols="30" rows="4" 
+          placeholder="About" class="form-control m-1" maxlength="500" #about="ngModel" required minlength="3"></textarea>
+        <div *ngIf="about.invalid && about.touched" class="text-danger">
+          <div *ngIf="about.errors?.['maxlength']">Bio must not exceed 500 characters.</div>
+          <div *ngIf="about.errors?.['required']">it is required too :)</div>
+          <div *ngIf="about.errors?.['minlength']">About section must be at least 3 characters.</div>
+        </div>
+
+        <input [(ngModel)]="author.linkedin" name="linkedin" type="url" class="form-control m-1" 
+          placeholder="LinkedIn Profile" pattern="https?://.+" #linkedin="ngModel">
+        <div *ngIf="linkedin.invalid && linkedin.touched" class="text-danger">
+          <div *ngIf="linkedin.errors?.['pattern']">Please enter a valid URL starting with http:// or https://</div>
+        </div>
+
+     
+          <button  class="btn btn-dark form-control m-1" (keyup.enter)="register()" (click)="register()" style="background-color:#f08e80 ;" [disabled]="registerForm.invalid || isLoading"> <strong>{{ isLoading ? '...' : 'Register' }}</strong></button>
+      </form>
+    </div>
+ 
+</div>
+<!-- start of footer -->
+<footer style="background-color: transparent;">
+  <div class="container">
+    <div class="section">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-xl-6 col-lg-8 col-md-10">
+          <!-- newsletter block -->
+          <div class="newsletter-block">
+            <h2 class="section-title text-center mb-4">Get latest posts delivered right to your inbox</h2>
+            <form action="#!" method="post" novalidate>
+              <div class="input-group flex-column flex-sm-row flex-nowrap flex-sm-nowrap">
+                <input type="email" name="email" class="form-control required email w-auto text-center text-sm-start" placeholder="Your email address" aria-label="Subscription" required>
+                <div class="input-group-append d-flex d-sm-inline-block mt-2 mt-sm-0 ms-0 w-auto">
+                  <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="input-group-text w-100 justify-content-center" aria-label="Subscription Button"><i class="ti ti-user-plus me-2"></i> Join today</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- newsletter block -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

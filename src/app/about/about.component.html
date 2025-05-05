@@ -1,0 +1,62 @@
+<section class="page-header section-sm" style="padding-top: 123px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="section-title h2 mb-3">
+            <span>About</span>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <h2 class="text-dark mb-0">We are <span style="color:#FB743E ;">Ng</span>blog, <br> Team of writers  <span style="color: #FB743E;">& </span>developer<span style="color: #FB743E;">s.</span></h2>
+        </div>
+      </div>
+      
+      <div class="py-5 my-3">
+        <div class="row g-4 justify-content-center text-center">
+          <h3 class="text" style="font-family: 'Monotype Corsiva', cursive;bottom: -170px;position: relative;color: #FB743E;">Join Us</h3>
+          <div  class="col-6 image-grid-2"[style.background-image]="'url('+ backgroundImage +')'|| 'url(assets/dist/images/blog.png)'"
+          style="background-color:white; background-position: right; background-repeat: no-repeat;background-size: cover; height: 300px;justify-content: center;width: 600px;border-radius: 10px;">
+          </div>
+        </div>
+      </div>
+  
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <div class="content">
+            <p>Welcome to our dynamic tech blog <span style="font-weight: bold;color:rgb(241, 158, 158);">ngBlog</span> where we dive deep into the world of <span style="font-weight: bold;">Angular</span> & <span style="font-weight: bold;">web development</span>, explore cutting-edge <span style="font-weight: bold;">AI</span> innovations, and share insights about the latest programming trends. 
+              <br>
+              From detailed Angular tutorials and best practices to fascinating AI implementations and various other tech topics, we're here to bring you valuable content that keeps you at the forefront of modern development.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section-sm pb-0">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 text-center">
+            <h2 class="section-title">
+              <span>Our writers</span>
+            </h2>
+    
+            <div class="row gx-4 gy-5 gx-md-5 justify-content-center text-center">
+              
+              <div class="col-md-4 col-sm-6" *ngFor="let author of authors" >
+                <a class="d-inline-block is-hoverable" [routerLink]="['/author',author._id]">
+                  <img class="img-fluid rounded" [src]="author.image" width="150" height="150">
+                  <h6 style="color: #FB743E;" class="mt-4 mb-1">{{author.name+' '+author.lastName}}</h6>
+                  <p class="mb-0"><span class="fw-bold text-black">{{getAuthorArticleCount(author._id)}}</span> Published posts</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+

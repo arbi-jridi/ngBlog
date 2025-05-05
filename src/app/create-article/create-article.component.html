@@ -1,0 +1,35 @@
+<div class="container mt-4" style="padding-top: 120px;">
+
+
+    <h2 class="text-center">Create a Blog</h2>
+
+    <div class="col-12 mx-auto">
+        <input [(ngModel)]="article.title" type="text" class="form-control m-1" placeholder="title" >
+        <ul *ngFor="let tag of article.tags " >
+            <li (click)="article.tags.splice(article.tags.indexOf(tag),1)">{{tag}}</li>
+        </ul>
+        <div class="row m-1" >
+            <input  type="text" class="form-control w-75" placeholder="tag" [(ngModel)]="tag"> 
+            <button class="btn btn-dark w-25" (click)="article.tags.push(tag);tag=''" >Add</button>
+        </div>
+     
+        <input type="file"  class="form-control m-1" placeholder="image" (change)="select($event)">
+        <textarea  title="" id="" cols="30" rows="2" placeholder="description" class="form-control m-1" [(ngModel)]="article.description" ></textarea>
+
+        <div class="m-1">
+            <angular-editor [config]="editorConfig" [placeholder]="'Write your ideas here...'" [(ngModel)]="article.content"></angular-editor>
+        </div>
+
+        <button type="button" class="starbtn" (click)="create()" [disabled]="isLoading">
+            <strong>{{ isLoading ? 'CREATING...' : 'CREATE' }}</strong>
+            <div id="container-stars">
+              <div id="stars"></div>
+            </div>
+            <div id="glow">
+              <div class="circle"></div>
+              <div class="circle"></div>
+            </div>
+          </button>
+    </div>
+
+</div>

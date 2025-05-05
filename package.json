@@ -1,0 +1,53 @@
+{
+  "name": "blog",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "build": "ng build",
+    "serve": "ng serve"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^19.2.6",
+    "@angular/cdk": "^19.2.9",
+    "@angular/common": "^19.2.6",
+    "@angular/compiler": "^19.2.6",
+    "@angular/core": "^19.2.6",
+    "@angular/forms": "^19.2.6",
+    "@angular/platform-browser": "^19.2.6",
+    "@angular/platform-browser-dynamic": "^19.2.6",
+    "@angular/router": "^19.2.6",
+    "@kolkov/angular-editor": "^3.0.0-beta.2",
+    "blog": "file:",
+    "dompurify": "^3.2.5",
+    "emailjs-com": "^3.2.0",
+    "jquery": "^3.7.1",
+    "ngx-slick-carousel": "^19.0.0",
+    "ngx-toastr": "^19.0.0",
+    "rxjs": "^7.8.2",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.19.1",
+    "tslib": "^2.8.1",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.2.7",
+    "@angular/cli": "^19.2.7",
+    "@angular/compiler-cli": "^19.2.6",
+    "@types/express": "^5.0.1",
+    "@types/jasmine": "~5.1.7",
+    "@types/jquery": "^3.5.32",
+    "@types/node": "^22.14.1",
+    "@types/slick-carousel": "^1.6.40",
+    "jasmine-core": "~5.6.0",
+    "karma": "~6.4.4",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.1",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.8.3"
+  }
+}

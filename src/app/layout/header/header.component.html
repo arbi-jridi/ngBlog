@@ -1,0 +1,78 @@
+<!-- Header Starts Here -->
+    <header>
+        <div class="container">
+            <div class="header">
+                <!-- Logo Starts Here -->
+                <a href="index.html">
+                  <img src="assets/images/ngblog.png" alt="ngblog" width="100" height="40" class="blogo">
+                </a>
+                <!-- Logo Ends Here -->
+
+                <!-- Mobile Menu Starts Here -->
+                <div class="menu-btn" [class.open]="isMenuOpen">
+                    <div class="menu-btn-lines" (click)="toggle()"></div>
+                </div>
+                <!-- Mobile Menu Ends Here -->
+
+                <!-- Update your main menu div to include the toggle state -->
+                <div class="main-menu d-none d-lg-flex" [class.open]="isMenuOpen" [class.d-none]="!isMenuOpen">
+                    <ul class="main-menu-items list-unstyled">
+                        <li><a routerLink="/"  routerLinkActive="active-item" class="main-menu-item" (click)="toggle()">HOME</a></li>
+                        <li><a routerLink="/posts" routerLinkActive="active-item" class="main-menu-item" (click)="toggle()">BLOGS</a></li>
+                        <li><a routerLink="/about" routerLinkActive="active-item" class="main-menu-item" (click)="toggle()" >ABOUT</a></li>
+                        <li><a routerLink="/contact" routerLinkActive="active-item" class="main-menu-item" (click)="toggle()">CONTACT</a></li>
+                    </ul>
+                    <form action="search.html">
+                        <div class="header-searchbar">
+                            <input type="text" placeholder="Search here...">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                    </form>
+                    &nbsp;
+                   
+                    <div class="drop-menu">
+                    <div class="dropdown" style="margin-left: 30px; z-index: 1000;">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="toggle()">
+                            <img  class="rounded"  [src]="author()?.image || 'assets/images/author/author.png'" [routerLink]="['/author',auth.getAuthorDataFromToken()._id]" width="46" height="46" *ngIf="auth.isLogged()"  >
+                            <img  class="rounded"  src="assets/images/author/author1.png"  width="46" height="46" *ngIf="!auth.isLogged()" >
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" show aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" [routerLink]="['/author',auth.getAuthorDataFromToken()._id]" *ngIf="auth.isLogged()" (click)="toggle()">Profile</a>
+                            <a class="dropdown-item" routerLink="/login" *ngIf="!auth.isLogged()" (click)="toggle()">Login</a>
+                            <a class="dropdown-item" routerLink="/register" *ngIf="!auth.isLogged()" (click)="toggle()">Register</a>
+                            <div class="dropdown-divider" *ngIf="auth.isLogged()"></div>
+                            <a class="dropdown-item" *ngIf="auth.isLogged()" (click)="logout()" style="cursor: pointer;" (click)="toggle()" >Logout</a>
+                        </div>
+                    </div>
+                   &nbsp;
+                   <hr class="d-block d-lg-none d-md-block d-sm-block" style="color: white; z-index: 99999999999999999;">
+                       &nbsp; &nbsp;<button  *ngIf="auth.isLogged()" [routerLink]="['/author',auth.getAuthorDataFromToken()._id]" class="button btn-primary d-block d-lg-none d-md-block d-sm-block" (click)="toggle()">Profile</button>
+                       &nbsp; &nbsp;
+                       <img  class="rounded d-block d-lg-none d-md-block d-sm-block"  [src]="author()?.image || 'assets/images/author/author.png'" [routerLink]="['/author',auth.getAuthorDataFromToken()._id]" width="46" height="46" *ngIf="auth.isLogged()" (click)="toggle()">
+                        &nbsp; &nbsp;<button  *ngIf="auth.isLogged()" (click)="logout()" (click)="toggle()"  class="button btn-primary d-block d-lg-none d-md-block d-sm-block">Logout</button>
+                        &nbsp; &nbsp;<button  routerLink="/login" *ngIf="!auth.isLogged()" class="button btn-primary d-block d-lg-none d-md-block d-sm-block" (click)="toggle()" >Login</button>
+                        &nbsp; &nbsp;<button  routerLink="/register" *ngIf="!auth.isLogged()" class="button btn-primary d-block d-lg-none d-md-block d-sm-block" (click)="toggle()" >Register</button>
+                        </div>
+                       
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button class="button button-item" routerLink="create" *ngIf="auth.isLogged()" style="height: 46px; cursor: pointer;" (click)="toggle()" >
+    <span class="button-bg">
+      <span class="button-bg-layers">
+        <span class="button-bg-layer button-bg-layer-1 -purple"></span>
+        <span class="button-bg-layer button-bg-layer-2 -turquoise"></span>
+        <span class="button-bg-layer button-bg-layer-3 -yellow"></span>
+      </span>
+    </span>
+    <span class="button-inner">
+      <span class="button-inner-static"><i class="fas fa-pen-nib"></i></span>
+      <span class="button-inner-hover"><i class="fas fa-pen-nib"></i></span>
+    </span>
+  </button>
+       <p class="d-block d-lg-none d-md-block d-sm-block"><span style="font-weight:bold;color:rgb(241, 158, 158);">Ng</span><span style="font-weight:bold;color: white;">Blog</span></p>
+                </div>
+                <!-- Menu Items Ends Here -->
+            </div>
+        </div>
+    </header>
+    <!-- Header Ends Here -->

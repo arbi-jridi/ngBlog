@@ -1,0 +1,90 @@
+
+
+<section class="page-header section-sm" style="padding-top: 130px;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="row g-4 g-lg-5 text-center text-lg-start justify-content-center justify-content-lg-start">
+            <div class="col-lg-3 col-md-4 col-sm-5 col-6" *ngIf="imageLoaded">
+              <img class="img-fluid rounded" [src]="author.image" alt="author" width="250" height="250">
+            </div>
+            <div class="col-lg-9 col-md-12" *ngIf="author">
+              <p class="mb-2"><span class="fw-bold text-black">{{articles.length}}</span> Published posts</p>
+              <h1  class="h3 text-dark mb-3">{{author.name +'  '+ author.lastName}}</h1>
+              <div class="content">
+                <p style="color: rgb(247, 130, 130);">{{author.about}}</p>
+                <p>Follow me &nbsp;&nbsp;<a target="_blank" href="{{author.linkedin}}"><i class="fab fa-linkedin"></i></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="container">
+    <div class="row gy-5 gx-4 g-xl-5">
+      <div class="col-lg-6" *ngFor="let article of paginatedArticles">
+        <article class="card post-card h-100 border-0 bg-transparent" >
+          <div class="card-body">
+            <a class="d-block" [routerLink]="['/detail',article._id]">
+              <div class="post-image position-relative">
+                <img class="w-100 h-auto rounded" src="{{article.image}}"  width="970" height="500">
+              </div>
+            </a>
+            <ul class="card-meta list-inline mb-3">
+              <li class="list-inline-item mt-2">
+                <i class="ti ti-calendar-event"></i>
+                <span>{{article.date | date}}</span>
+              </li>
+              <li class="list-inline-item mt-2">—</li>
+              <li class="list-inline-item mt-2">
+                <i class="ti ti-clock"></i>
+                <span>{{(article.content.split(" ").length/350) | number:'1.0-0' }} min read</span>
+              </li>
+            </ul>
+            <a class="d-block" [routerLink]="['/detail',article._id]">
+              <h3>
+                {{article.title.substring(0, 50)}}..
+              </h3>
+            </a>
+            <p>{{article.description.substring(0, 90)}}.. …</p>
+          </div>
+          <div class="card-footer border-top-0 bg-transparent p-0">
+            <ul class="card-meta list-inline" *ngIf="author">
+              <li class="list-inline-item mt-2">
+                <a  class="card-meta-author">
+                  <img class="w-auto" [src]="author.image" alt="{{(author.name +'  '+ author.lastName)}}" width="30" height="30"> by {{(author.name +'  '+ author.lastName) }}
+                </a>
+              </li>
+              <li class="list-inline-item mt-2">•</li>
+              <li class="list-inline-item mt-2">
+                <ul class="card-meta-tag list-inline">
+                  <li class="list-inline-item small" style="display: inline-block; margin-right: 5px;" *ngFor="let tag of article.tags">
+                    <a>{{tag}}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          
+        </article>
+        
+      </div>
+      
+    </div>
+    <!-- pagination -->
+    <div class="pagination rounded">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
+      <button 
+        *ngFor="let page of [].constructor(totalPages); let i = index" 
+        (click)="changePage(i + 1)"
+        [class.active]="currentPage === i + 1" style="border-radius: 5px;">
+        {{ i + 1 }}
+      </button>
+      <span>..</span>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+    <!-- pagination -->
+  </div>
+  

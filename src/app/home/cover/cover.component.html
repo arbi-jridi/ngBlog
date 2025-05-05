@@ -1,0 +1,43 @@
+
+ <section class="banner" [style.background-image]="'url('+ backgroundImage +')'|| 'url(assets/dist/images/banner.jpg)'"
+ style="background-color:white; background-position: right; background-repeat: no-repeat;background-size: cover;">
+ <div class="container" >
+     <div class="row">
+         <div class="col-lg-6"  >
+            <ngx-slick-carousel 
+  #slickModal="slick-carousel"
+  [config]="{
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: true
+  }"
+  [ngClass]="{'d-none': !articles?.length}"
+>
+  <div ngxSlickItem *ngFor="let article of articles" class="banner-content">
+        <div class="banner-content-main" style="height: 350px;">
+            <span class="fs-6 has-line">{{article.tags[0]}}</span>
+            <h6><a [routerLink]="['/detail',article._id]" >{{article.title.substring(0, 50)}}..</a></h6>
+            <div class="blog-date">
+                <div class="blog-date-start">
+                    <span>{{article.date |date }}</span>
+                </div>
+                <div class="blog-date-end">
+                    <span>{{(article.content.split(" ").length/350) | number:'1.0-0' }} min read</span>
+                </div>
+            </div>
+            <p style="color: rgb(116, 91, 91);">
+              {{article.description.substring(0, 80)}}...
+            </p>
+            <a [routerLink]="['/detail',article._id]" class="btn btn-default">Read More</a>
+        </div>
+    
+  </div>
+</ngx-slick-carousel>
+         </div>
+     </div>
+ </div>
+</section>
+
+

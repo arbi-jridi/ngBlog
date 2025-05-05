@@ -1,0 +1,231 @@
+
+<section class="details-banner" *ngIf="imageLoaded">
+        <img src="{{article.image}}" alt="Background Image" class="img-fluid w-100" style="height: 500px;">
+    </section>
+
+    <!-- Blog Details Intro Starts Here -->
+    <section class="blog-intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="blog-intro-area">
+                        <span class="has-line fs-6"><a>&nbsp;{{article.tags+' '}}&nbsp;</a></span>
+                        <h3 class="break-title">{{article.title}}</h3>
+                        <div class="blog-intro-area-bottom">
+                            <div class="intro-start">
+                                <div class="intro-start-author">
+                                    <div class="author-image">
+                                        <img src="{{author.image}}" alt="Author">
+                                    </div>
+                                    <a [routerLink]="['/author', article.idAuthor]" routerLinkActive="router-link-active" class="fs-6">{{author.name + ' ' + author.lastName}}</a>
+                                </div>
+                                <div class="intro-start-release d-flex">
+                                    <div>
+                                        <span class="dot"></span>
+                                        <span class="intro-start-time">{{article.date | date }}</span>
+                                    </div>
+                                    <div>
+                                        <span class="dot"></span>
+                                        <span class="intro-start-time">
+                                            {{article?.content ? (article.content.split(' ').length/350 | number:'1.0-0') : '0'}} min read
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="intro-end">
+                                <ul class="list-unstyled list-inline social-links mb-0">
+                                    <li class="list-inline-item">
+                                        <a href="#">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">                                      
+                                            <i class="fab fa-twitter"></i>  
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">                                      
+                                            <i class="fab fa-linkedin-in"></i>   
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item" *ngIf="canDelete" style="cursor:pointer;">
+                                        <a style="color: red;" (click)="confirmDelete(article._id)">                                      
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Details Intro Ends Here -->
+
+    <!-- Blog Article Starts Here -->
+    <section class="blog-article section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="blog-article-start">
+                                <div class="blogy-counts" (click)="likeArticle()" style="cursor: pointer;">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.49997 18.9999H2.79999C2.3226 18.9999 1.86477 18.8102 1.5272 18.4727C1.18964 18.1351 1 17.6773 1 17.1999V10.8999C1 10.4226 1.18964 9.96472 1.5272 9.62715C1.86477 9.28959 2.3226 9.09995 2.79999 9.09995H5.49997M11.7999 7.29996V3.69998C11.7999 2.9839 11.5155 2.29715 11.0091 1.79081C10.5028 1.28446 9.81603 1 9.09995 1L5.49997 9.09995V18.9999H15.6519C16.086 19.0048 16.5072 18.8527 16.838 18.5715C17.1688 18.2903 17.3868 17.8991 17.4519 17.4699L18.6939 9.36995C18.733 9.11197 18.7156 8.84856 18.6429 8.59798C18.5701 8.34739 18.4438 8.11562 18.2726 7.91872C18.1013 7.72182 17.8894 7.5645 17.6513 7.45765C17.4133 7.35081 17.1548 7.297 16.8939 7.29996H11.7999Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span style="font-weight: bold;">{{article?.likes || 0}}</span><span>&nbsp;Likes</span>
+                                </div>
+                                <div class="blogy-counts" style="cursor: pointer;" (click)="jumptoComments()">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 13C19 13.5304 18.7893 14.0391 18.4142 14.4142C18.0391 14.7893 17.5304 15 17 15H5L1 19V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H17C17.5304 1 18.0391 1.21071 18.4142 1.58579C18.7893 1.96086 19 2.46957 19 3V13Z" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span style="font-weight: bold;">{{article?.comments.length || 0}}</span><span>&nbsp;Comments</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="blog-article-end">
+                                <h4 class="break-title">{{article.title}}</h4>
+                                <p>
+                                    
+                                </p>
+                                <div class="blog-article-end-feature">
+                                    <p>
+                                        {{article.description}}
+                                    </p>
+                                </div>
+                                <!-- <h6>1. Know the principles of design</h6> -->
+                                <img src="{{article.image}}" alt="Image" class="img-fluid w-100" style="height: 300px">
+                                
+                                <div class="blog-content" [innerHTML]="article.content | stripHtml"></div>
+                                
+                                <div class="blog-article-end-bottom">
+                                    <button class="btn-default" (click)="likeArticle()">
+                                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.49997 18.9999H2.79999C2.3226 18.9999 1.86477 18.8102 1.5272 18.4727C1.18964 18.1351 1 17.6773 1 17.1999V10.8999C1 10.4226 1.18964 9.96472 1.5272 9.62715C1.86477 9.28959 2.3226 9.09995 2.79999 9.09995H5.49997M11.7999 7.29996V3.69998C11.7999 2.9839 11.5155 2.29715 11.0091 1.79081C10.5028 1.28446 9.81603 1 9.09995 1L5.49997 9.09995V18.9999H15.6519C16.086 19.0048 16.5072 18.8527 16.838 18.5715C17.1688 18.2903 17.3868 17.8991 17.4519 17.4699L18.6939 9.36995C18.733 9.11197 18.7156 8.84856 18.6429 8.59798C18.5701 8.34739 18.4438 8.11562 18.2726 7.91872C18.1013 7.72182 17.8894 7.5645 17.6513 7.45765C17.4133 7.35081 17.1548 7.297 16.8939 7.29996H11.7999Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg> Like ({{article?.likes || 0}})
+                                    </button>
+                                    <div class="d-flex align-items-center flex-column flex-lg-row">
+                                    <span class="me-3">Share the Post:</span>
+                                    <ul class="list-unstyled list-inline social-links mb-0">
+                                        <li class="list-inline-item"><a href="#">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a></li>
+                                        <li class="list-inline-item"><a href="#">                                      
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item"><a href="#">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         </div>
+          </div>
+    </section>
+    <!-- Blog Article Ends Here -->
+
+
+    <!-- Comments Area Starts Here -->
+    <section id="comments-area" class="comments-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h5>Leave a Comment</h5>
+                    <form (submit)="addComment()"  #comentForm="ngForm" (ngSubmit)="addComment()" novalidate>
+                        <div class="row g-3">
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" placeholder="Your name" 
+                     [(ngModel)]="newComment.reader" name="reader" required [disabled]='isLoggedIn'  minlength="3" name="name" id="name" ngModel #name="ngModel" required >
+                     <div *ngIf="name.invalid && name.touched" class="text-danger">
+                        <div *ngIf="name.errors?.['required']">your Name is required.</div>
+                        <div *ngIf="name.errors?.['minlength']">Name must be at least 3 characters.</div>
+                      </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                    <input type="email" class="form-control" placeholder="Your email" 
+                     [(ngModel)]="newComment.email" name="email" required [disabled]='isLoggedIn' required email #email="ngModel">
+                     <div *ngIf="email.invalid && email.touched" class="text-danger">
+                        <div *ngIf="email.errors?.['required']">Email is required.</div>
+                        <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+                      </div>
+                            </div>
+                        </div>
+                        <textarea class="form-control" placeholder="Your Comments" 
+                    [(ngModel)]="newComment.content" name="content"  minlength="3" ngModel #content="ngModel"   id="conteny" required></textarea>
+                    <div *ngIf="content.invalid && content.touched" class="text-danger">
+                        <div *ngIf="content.errors?.['required']">Comment is required.</div>
+                        <div *ngIf="content.errors?.['minlength']">comment at least 3 characters.</div>
+                      </div>
+                        <div class="d-flex justify-content-lg-end">
+                            <button type="submit" class="btn-default"  [disabled]="comentForm.invalid || isLoading"> <strong>{{ isLoading ? 'COMMENTING...' : 'Post Comment' }}</strong></button>
+                        </div>
+                    </form>
+
+                    <section id="comments-section">
+                    <div class="comments-area-content">
+                        <h5>Comments <span>({{article?.comments?.length || 0}})</span></h5>
+                        <div class="comments" *ngFor="let comment of article?.comments">
+                          <div class="comments-owner">
+                            <div class="comments-owner-image">
+                              <a  class="d-block">
+                                <img src="assets/dist/images/author.png" alt="Image">
+                              </a>
+                            </div>
+                            <div class="comments-owner-text">
+                              <p style="color: coral;font-weight: bold;">{{comment.reader}}</p>
+                              <span>{{comment.date | date}}</span>
+                            </div>
+                          </div>
+                          <p>{{comment.content}}</p>
+                        </div>
+                      </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Comments Area Ends Here -->
+
+       <!-- Blog Item Feature Starts Here -->
+       <section class="blog-item-feature">
+        <div class="container">
+            <div class="blog-item-feature-heading">
+                <h4>You May Also Like</h4>
+                <a routerLink="/posts">View All</a>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mb-4 mb-md-0 mb-lg-0" *ngFor="let article of articles" >
+                    <div class="blog-item" [routerLink]="['/detail',article._id]" (click)="scrollTop()" >
+                        <div class="blog-item-image">
+                            <a [routerLink]="['/detail',article._id]" (click)="scrollTop()">
+                                <img [src]="article.image" alt="Image">
+                            </a>
+                        </div>
+                        <div class="blog-item-info">
+                            <span class="fs-6 has-line">{{article.info}}</span>
+                            <h5><a [routerLink]="['/detail',article._id]">{{article.title.substring(0, 50)}}..</a></h5>
+                            <div class="blog-item-info-release">
+                                <span>{{article.date |date }}</span> <span class="dot"></span> <span>{{(article.content.split(" ").length/350) | number:'1.0-0' }} min read</span>
+                            </div>
+                            <a [routerLink]="['/detail',article._id]" class="btn btn-link">Read Article 
+                                <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.5 1.5L17 6M17 6L12.5 10.5M17 6H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Item Feature Ends Here -->

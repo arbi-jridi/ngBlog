@@ -1,0 +1,64 @@
+<section class="page-header section-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="section-title h2 mb-3">
+            <span>Contact</span>
+          </h1>
+       
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="container">
+      <div class="row gy-5 justify-content-center">
+        
+        <div class="col-lg-5 col-md-10 ms-lg-auto me-lg-0 me-auto">
+          <div class="mb-5">
+            <h2 class="h3 mb-3">Contact us</h2>
+            <p class="mb-0">I&rsquo;m here to help and answer any question you might have. I look forward to hearing from you</p>
+          </div>
+          <div>
+            <h2 class="h4 mb-3">Hate forms? <br> Write an email or make a call</h2>
+            <p class="mb-2 content">
+              <i class="ti ti-mail-forward me-2 d-inline-block mb-0" style="transform:translateY(2px)"></i> <a href='mailto:arbi.jridi&#64;gmail.com'>arbi.jridi&#64;gmail.com</a></p>
+            <p class="mb-0 content"><i class="ti ti-phone me-2"></i> +216 98 756 636</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-5 me-lg-auto ms-lg-0 ms-auto">
+          <h2 class="h3 mb-4">Contact form</h2>
+  
+          <form class="row g-4"  #contactForm="ngForm" (ngSubmit)="sendEmailFromForm($event)" novalidate>
+            <div class="col-md-12">
+              <textarea minlength="3" ngModel #message="ngModel" class="form-control" placeholder="Ask question or just say Hi" rows="4" type="textarea" name="message" id="message" required></textarea>
+              <div *ngIf="message.invalid && message.touched" class="text-danger">
+                <div *ngIf="message.errors?.['required']">Your feedBack is required.</div>
+                <div *ngIf="message.errors?.['minlength']">Name must be at least 3 characters.</div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <input ngModel name="email" type="email" class="form-control m-1" placeholder="email" required email #email="ngModel">
+      <div *ngIf="email.invalid && email.touched" class="text-danger">
+      <div *ngIf="email.errors?.['required']">Email is required.</div>
+      <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+    </div>
+            </div>
+            <div class="col-md-12">
+              <input type="text" class="form-control" placeholder="Your name here" minlength="3" name="sender" id="sender" ngModel #sender="ngModel" required>
+              <div *ngIf="sender.invalid && sender.touched" class="text-danger">
+                <div *ngIf="sender.errors?.['required']">your Name is required.</div>
+                <div *ngIf="sender.errors?.['minlength']">Name must be at least 3 characters.</div>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" aria-label="Send Message" [disabled]="contactForm.invalid">Send <i class="ti ti-brand-telegram ms-1"></i></button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </section>

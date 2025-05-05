@@ -1,0 +1,45 @@
+<div class="container mt-5" style="padding-top: 100px;">
+
+
+    <h2 class="text-center"> Login to author account </h2>
+
+    <div class="col-12 mx-auto">
+      <form #loginForm="ngForm" (ngSubmit)="login()" novalidate>
+      <input [(ngModel)]="author.email" name="email" type="email" class="form-control m-1" placeholder="email" required email #email="ngModel">
+      <div *ngIf="email.invalid && email.touched" class="text-danger">
+      <div *ngIf="email.errors?.['required']">Email is required.</div>
+      <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+    </div>
+      <input  [(ngModel)]="author.password" name="password"  type="password" class="form-control m-1" placeholder="password" required minlength="6" #password="ngModel">
+      <div *ngIf="password.invalid && password.touched" class="text-danger">
+      <div *ngIf="password.errors?.['required']">Password is required.</div>
+      <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters.</div>
+    </div>
+        <button  class="btn btn-dark form-control m-1" (keyup.enter)="login()" (click)="login()" style="background-color:#f08e80 ;" [disabled]="loginForm.invalid || isLoading"> <strong>{{ isLoading ? '...' : 'Login' }}</strong></button>
+  </form>
+</div>
+<!-- start of footer -->
+<footer style="background-color: transparent;">
+  <div class="container">
+    <div class="section">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-xl-6 col-lg-8 col-md-10">
+          <!-- newsletter block -->
+          <div class="newsletter-block">
+            <h2 class="section-title text-center mb-4">Get latest posts delivered right to your inbox</h2>
+            <form action="#!" method="post" novalidate>
+              <div class="input-group flex-column flex-sm-row flex-nowrap flex-sm-nowrap">
+                <input  type="email" name="email" class="form-control required email w-auto text-center text-sm-start" placeholder="Your email address" aria-label="Subscription" required>
+                <div class="input-group-append d-flex d-sm-inline-block mt-2 mt-sm-0 ms-0 w-auto">
+                  <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="input-group-text w-100 justify-content-center" aria-label="Subscription Button"><i class="ti ti-user-plus me-2"></i> Join today</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- newsletter block -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>

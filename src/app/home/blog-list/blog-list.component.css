@@ -1,0 +1,23 @@
+img:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+}
+
+.container1:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    color: #FB743E;
+    transition: 0.3s;
+    cursor: pointer;
+    border: #FB743E 1px solid;
+}
+
+.orange:hover {
+    color: #FB743E;
+    transition: color 0.3s;
+}
+
+.break-title {
+    word-break: break-word !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+  }
