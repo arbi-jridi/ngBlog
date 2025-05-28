@@ -1,7 +1,9 @@
 export const environment = {
   production: false,
-  authUrl: 'https://ngblog-backend.onrender.com/author/',
-  articleUrl: 'https://ngblog-backend.onrender.com/article/',
+   authUrl: 'https://ngblog-backend.onrender.com/author/', 
+/*   authUrl: 'http://127.0.0.1:3000/author/', */
+   articleUrl: 'https://ngblog-backend.onrender.com/article/', 
+ /*  articleUrl: 'http://127.0.0.1:3000/article/', */
   firebase: {
     apiKey: "AIzaSyBgsU-gs_ZRUooR1ic9wGg2R9yUgeacDB0",
     authDomain: "ngblog-2025.firebaseapp.com",

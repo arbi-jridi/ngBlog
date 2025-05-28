@@ -22,13 +22,15 @@
                         <li><a routerLink="/about" routerLinkActive="active-item" class="main-menu-item" (click)="toggle()" >ABOUT</a></li>
                         <li><a routerLink="/contact" routerLinkActive="active-item" class="main-menu-item" (click)="toggle()">CONTACT</a></li>
                     </ul>
-                    <form action="search.html">
+                    <form (ngSubmit)="onSearch()" #searchForm="ngForm">
                         <div class="header-searchbar">
-                            <input type="text" placeholder="Search here...">
+                          <input type="text" placeholder="Search here..." [(ngModel)]="searchQuery" name="searchQuery">
+                          <button type="submit" style="background: none; border: none;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
+                          </button>
                         </div>
-                    </form>
+                      </form>
                     &nbsp;
                    
                     <div class="drop-menu">

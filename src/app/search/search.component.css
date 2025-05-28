@@ -1,0 +1,53 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 10px;
+    border: rgba(243, 113, 93, 0.171) 1px solid;
+  }
+  
+  .pagination button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+  }
+  
+  .pagination button.active {
+    background:#FB743E;
+    color: white;
+    border-color: #ddd;
+  }
+  
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .spinner {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #f08e80;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .searched {
+    font-size: 1.2em !important;
+    color: #c7c3c3 !important;
+  }
+  

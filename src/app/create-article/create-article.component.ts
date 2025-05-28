@@ -31,6 +31,9 @@ select(event: any){
 
 tag: any = '';
 
+get tagsValid(): boolean {
+  return this.article.tags?.length > 0;
+}
 
   success(){
     this.toaster.typeSuccess('Article created successfully', 'Success');
@@ -56,10 +59,10 @@ tag: any = '';
       },
       error: (error: any) => {
         console.error(error);
-        this.toaster.typeError('An error has occurred', error.message);
+        this.toaster.typeError('OOPS !', 'An error has occurred');
         setTimeout(() => {
           this.isLoading = false;
-        }, 30000); 
+        }, 20000); 
       },
       complete: () => {
         this.isLoading = false;

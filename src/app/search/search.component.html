@@ -1,0 +1,85 @@
+  <!-- Search Area Starts Here -->
+  <section class="search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 text-center mx-auto">
+                <h5>Search Results for <span style="color:#f08e80;">"{{query}}"</span></h5>
+            </div>
+            <div *ngIf="loading">Searching...<div class="spinner"></div></div>
+            <div *ngIf="error" class="text-danger">{{error}}</div>
+            <div *ngIf="!loading && results.length === 0 && query">
+              <h6 style="color: red; justify-self: center; text-align: center; padding-top: 20px;">No articles found !</h6>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Search Area Ends Here -->
+  <div class="container" >
+    <div class="row gy-5 gx-4 g-xl-5">
+      <div class="col-lg-6"  *ngFor="let article of paginatedArticles">
+        <article class="card post-card h-100 border-0 bg-transparent">
+          <div class="card-body">
+            <a class="d-block" [routerLink]="['/detail',article._id]" title="{{article.title}}">
+              <div class="post-image position-relative">
+                <img class="w-100 h-auto rounded" src="{{article.image}}" alt="article image" width="970" height="400">
+              </div>
+            </a>
+            <ul class="card-meta list-inline mb-3">
+              <li class="list-inline-item mt-2">
+                <i class="ti ti-calendar-event"></i>
+                <span style="color: rgb(0, 0, 105);">{{article.date | date}}</span>
+              </li>
+              <li class="list-inline-item mt-2">—</li>
+              <li class="list-inline-item mt-2">
+                <i class="ti ti-clock"></i>
+                <span>{{(article.content.split(" ").length/350) | number:'1.0-0' }} min read</span>
+              </li>
+            </ul>
+            <a class="d-block" [routerLink]="['/detail',article._id]"><h5 class="mb-3 post-title" [innerHTML]="highlight(article.title, query)"></h5></a>
+            <ng-container *ngIf="getHighlightedSentence(article.content, query)">
+                <p class="card-text searched" [innerHTML]="highlight(getHighlightedSentence(article.content, query) || '', query)"></p>
+              </ng-container>
+          </div>
+          <div class="card-footer border-top-0 bg-transparent p-0">
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item mt-2" *ngFor="let author of authors">
+                <div *ngIf="author._id == article.idAuthor">
+                <a [routerLink]="['/author',author._id]" class="card-meta-author">
+                  <img class="w-auto" src="{{author.image}}" alt="{{(author.name +'  '+ author.lastName)}}" width="30" height="30"> by <span style="font-weight: bold;">{{(author.name +'  '+ author.lastName)}}</span>
+                </a>
+              </div>
+              </li>
+              <li class="list-inline-item mt-2">•</li>
+              <li class="list-inline-item mt-2">
+                <ul class="card-meta-tag list-inline">
+                  <li class="list-inline-item small" style="display: inline-block; margin-right: 5px;" *ngFor="let tag of article.tags">
+                    <a>{{tag}}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </article>
+        <hr>
+      </div>
+      <div class="col-12">
+
+     <!-- pagination -->
+        <div class="pagination rounded" *ngIf="totalPages > 1">
+          <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
+          <button 
+            *ngFor="let page of [].constructor(totalPages); let i = index" 
+            (click)="changePage(i + 1)"
+            [class.active]="currentPage === i + 1" style="border-radius: 5px;">
+            {{ i + 1 }}
+          </button>
+          <span>..</span>
+          <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+        </div>
+        <!-- pagination -->
+      </div>
+    </div>
+  </div>
+

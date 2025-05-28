@@ -5,6 +5,7 @@ import { ArticlesService } from '../services/articles/articles.service';
 import { AuthService } from '../services/auth/auth.service';
 import Swal from 'sweetalert2';
 import { Toast } from 'ngx-toastr';
+import { SocialService } from '../services/social/social.service';
 
 @Component({
   selector: 'app-detail',
@@ -32,7 +33,7 @@ newComment = {
 };
 
 
-constructor(private route: ActivatedRoute ,private artcs:ArticlesService, private auth :AuthService,private router:Router,private toastr: ToasterService) { }
+constructor(private route: ActivatedRoute ,private artcs:ArticlesService, private auth :AuthService,private router:Router,private toastr: ToasterService,private socialShare: SocialService) { }
 ngAfterViewInit() {
   this.scrollTop();
   this.artcs.getAll().subscribe({
@@ -167,4 +168,44 @@ likeArticle() {
   });
 }
 
+showShareModal = false;
+sharePlatform: 'facebook' | 'linkedin' | 'twitter' |null = null;
+
+openShareModal(platform: 'facebook' | 'linkedin' | 'twitter') {
+  this.sharePlatform = platform;
+  this.showShareModal = true;
+}
+
+closeShareModal() {
+  this.showShareModal = false;
+  this.sharePlatform = null;
+}
+
+shareNow() {
+  const url = encodeURIComponent(window.location.href);
+  const title = encodeURIComponent(this.article.title);
+  let shareUrl = '';
+  if (this.sharePlatform === 'facebook') {
+   this.shareOnFacebook();
+  } else if (this.sharePlatform === 'linkedin') {
+    this.shareOnLinkedIn();
+  }
+  else {
+    this.shareOnTwitter();
+  }
+ /*  window.open(shareUrl, '_blank', 'width=600,height=400'); */
+  this.closeShareModal();
+}
+
+shareOnFacebook() {
+  this.socialShare.shareOnFacebook(this.article);
+}
+
+shareOnTwitter() {
+  this.socialShare.shareOnTwitter(this.article);
+}
+
+shareOnLinkedIn() {
+  this.socialShare.shareOnLinkedIn(this.article);
+}
 }

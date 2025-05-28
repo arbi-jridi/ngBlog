@@ -35,18 +35,17 @@
                             <div class="intro-end">
                                 <ul class="list-unstyled list-inline social-links mb-0">
                                     <li class="list-inline-item">
-                                        <a href="#">
+                                        <a  (click)="openShareModal('facebook'); $event.preventDefault();">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li class="list-inline-item">
-                                        <a href="#">                                      
-                                            <i class="fab fa-twitter"></i>  
+                                        <a  (click)="openShareModal('linkedin'); $event.preventDefault();">
+                                            <i class="fab fa-linkedin-in"></i>
                                         </a>
                                     </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">                                      
-                                            <i class="fab fa-linkedin-in"></i>   
+                                    <li class="list-inline-item"><a  (click)="openShareModal('twitter'); $event.preventDefault();">
+                                            <i class="fab fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li class="list-inline-item" *ngIf="canDelete" style="cursor:pointer;">
@@ -111,14 +110,14 @@
                                     <div class="d-flex align-items-center flex-column flex-lg-row">
                                     <span class="me-3">Share the Post:</span>
                                     <ul class="list-unstyled list-inline social-links mb-0">
-                                        <li class="list-inline-item"><a href="#">
+                                        <li class="list-inline-item"><a (click)="openShareModal('facebook'); $event.preventDefault();">
                                             <i class="fab fa-facebook-f"></i>
                                         </a></li>
-                                        <li class="list-inline-item"><a href="#">                                      
+                                        <li class="list-inline-item"><a (click)="openShareModal('twitter'); $event.preventDefault();">                                      
                                             <i class="fab fa-twitter"></i>
                                         </a>
                                     </li>
-                                    <li class="list-inline-item"><a href="#">
+                                    <li class="list-inline-item"><a (click)="openShareModal('linkedin'); $event.preventDefault();">
                                         <i class="fab fa-linkedin-in"></i>
                                     </a></li>
                                 </ul>
@@ -229,3 +228,25 @@
         </div>
     </section>
     <!-- Blog Item Feature Ends Here -->
+
+
+
+<!-- Share Modal -->
+<div class="modal" tabindex="-1" [ngClass]="{'show': showShareModal}" style="display: block;" *ngIf="showShareModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Share this post</h5>
+        <button type="button" class="btn-close" (click)="closeShareModal()"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img [src]="article.image" alt="Blog Image" class="img-fluid mb-3" style="max-height: 200px;">
+        <h5>{{article.title}}</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="shareNow()">Share Now</button>
+        <button type="button" class="btn btn-secondary" (click)="closeShareModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

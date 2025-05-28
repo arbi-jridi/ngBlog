@@ -47,7 +47,7 @@
             <div class="row gx-4 gy-5 gx-md-5 justify-content-center text-center">
               
               <div class="col-md-4 col-sm-6" *ngFor="let author of authors" >
-                <a class="d-inline-block is-hoverable" [routerLink]="['/author',author._id]">
+                <a *ngIf="getAuthorArticleCount(author._id)>0" class="d-inline-block is-hoverable" [routerLink]="['/author',author._id]">
                   <img class="img-fluid rounded" [src]="author.image" width="150" height="150">
                   <h6 style="color: #FB743E;" class="mt-4 mb-1">{{author.name+' '+author.lastName}}</h6>
                   <p class="mb-0"><span class="fw-bold text-black">{{getAuthorArticleCount(author._id)}}</span> Published posts</p>

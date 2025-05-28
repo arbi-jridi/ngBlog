@@ -41,4 +41,8 @@ export class ArticlesService {
     return this.http.put(`${this.url}/${articleId}/like`, {});
   }
 
+  searchArticles(query: string) {
+    return this.http.get(`${this.url}/search?q=${encodeURIComponent(query)}`);
+  }
+
 }

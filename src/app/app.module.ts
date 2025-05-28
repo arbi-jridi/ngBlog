@@ -26,6 +26,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { StripHtmlPipe } from './pipes/strip-html.pipe';
 import { environment } from '../environment/environment';
 import { AngularFireModule } from '@angular/fire/compat';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -46,7 +47,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     BlogListComponent,
     ContactComponent,
     PostsComponent,
-    StripHtmlPipe
+    StripHtmlPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -35,7 +35,7 @@ export class LoginComponent {
         this.toaster.typeError('Email or password incorrect','An error occurred');
         setTimeout(() => {
           this.isLoading = false;
-        }, 10000); 
+        }, 5000); 
       },
       complete: () => {
         this.isLoading = false;

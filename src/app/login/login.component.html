@@ -15,7 +15,7 @@
       <div *ngIf="password.errors?.['required']">Password is required.</div>
       <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters.</div>
     </div>
-        <button  class="btn btn-dark form-control m-1" (keyup.enter)="login()" (click)="login()" style="background-color:#f08e80 ;" [disabled]="loginForm.invalid || isLoading"> <strong>{{ isLoading ? '...' : 'Login' }}</strong></button>
+        <button  class="btn btn-dark form-control m-1" (keyup.enter)="login()" (click)="login()" style="background-color:#f08e80 ;" [disabled]="loginForm.invalid || isLoading"> <div *ngIf="!isLoading"> login</div><div *ngIf="isLoading" class="spinner"></div></button>
   </form>
 </div>
 <!-- start of footer -->

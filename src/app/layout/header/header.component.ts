@@ -17,7 +17,10 @@ id: any;
 author = computed(() => this.auth.getAuthorData());
 imageLoaded = computed(() => !!this.author());
 
+searchQuery: string = '';
+
   constructor(public auth:AuthService, private router :Router,private route: ActivatedRoute, private toaster:ToasterService) { }
+
   ngOnInit() {
     const authorId = localStorage.getItem('authorId');
     if (authorId) {
@@ -41,5 +44,14 @@ imageLoaded = computed(() => !!this.author());
 
    toggle() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  onSearch() {
+    if (this.searchQuery && this.searchQuery.trim().length > 0) {
+      this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
+    }
+    else{
+      this.router.navigate(['/']);
+    }
   }
 }

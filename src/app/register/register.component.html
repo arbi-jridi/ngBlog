@@ -53,7 +53,7 @@
         </div>
 
      
-          <button  class="btn btn-dark form-control m-1" (keyup.enter)="register()" (click)="register()" style="background-color:#f08e80 ;" [disabled]="registerForm.invalid || isLoading"> <strong>{{ isLoading ? '...' : 'Register' }}</strong></button>
+          <button  class="btn btn-dark form-control m-1" (keyup.enter)="register()" (click)="register()" style="background-color:#f08e80 ;" [disabled]="registerForm.invalid || isLoading"><div *ngIf="!isLoading"> Register</div><div *ngIf="isLoading" class="spinner"></div></button>
       </form>
     </div>
  
